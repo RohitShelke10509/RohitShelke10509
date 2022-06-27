@@ -1,0 +1,48 @@
+
+
+.userProfile{
+    height: 15Vh;
+    width:25vw;
+    background-color:rgb(240, 240, 240);
+    display: flex;
+    
+}
+#UserName{
+    font-size:2vh;
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: bold;
+    color:rgb(43, 38, 38);
+    
+}
+.userInfo
+{
+    float: right;
+    display: table-cell;
+    padding-left: 2vw;
+}
+img{
+    margin-top: 1vh;
+    border-radius: 10vh;
+}
+
+.UserMail{
+    font-size:2vh;
+    font-family: 'Times New Roman', Times, serif;
+    font-weight:lighter;
+    color:rgb(43, 38, 38);
+}
+.success{
+    height: 1vh;
+    width: 0.5vw;
+    border-radius: 60%;
+    background-color:green;
+}
+.fail{
+    height: 1vh;
+    width: 0.5vw;
+    border-radius: 60%;
+    background-color:red;
+}
+.status3{
+    margin-left: 1.5vw;
+}

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>userWidget</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script src="widgetscript.js"></script>
+    <link rel="stylesheet" href="user1.css">
+</head>
+
+<body>
+    <h1>User widget</h1>
+    <div class="userProfile" ng-controller="myCtrl">
+        <div class="UserProfileImage">
+            <img src="user.webp" width="70" height="70" />
+        </div>
+        <div class="userInfo">
+            <p id="UserName" ng-bind="name"></p>
+
+            <p class="UserMail" ng-bind="gmail"></p>
+
+            <div ng-class="message">
+
+                <p class="status3" ng-bind="active()"></p>
+
+            </div>
+        </div>
+</body>
+
+</html>
