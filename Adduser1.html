@@ -1,0 +1,331 @@
+<html>
+
+<head>
+	<TITLE>AngularJS</TITLE>
+
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+
+
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/paginationjs/2.1.5/pagination.min.js"></script>
+
+	<!-- <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script> -->
+	<script data-require="angular.js@1.1.5" data-semver="1.1.5" src="http://code.angularjs.org/1.1.5/angular.min.js">
+	</script>
+	<link data-require="bootstrap-css@2.3.2" data-semver="2.3.2" rel="stylesheet"
+		href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" />
+	<script data-require="angular-ui-bootstrap@0.3.0" data-semver="0.3.0"
+		src="http://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.3.0.min.js">
+		</script>
+
+
+	</script>
+	<script type="text/javascript" src="AddUser.js"></script>
+</head>
+
+<body ng-app="myApp" ng-controller="myController as list">
+	<div class="container">
+		<div class="row">
+			<hr>
+			<div class="col-md-8">
+				<strong>All User</strong>
+			</div>
+			<div class="col-md-4">
+				<button type="button" class="btn btn-primary pull-right" data-toggle="modal" data-target="#add">Add
+					User</button>
+			</div>
+			<span class="clearfix"></span>
+			<hr>
+		</div>
+		<div class="alert alert-info" ng-if="message">
+			<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+			User added Successfully !
+		</div>
+		<div class="row">
+			<form clas="form-inline">
+				<div clas="form-group">
+					<label>search</label>
+					<input type="text" ng-model="search" class="form-control" placeholder="search">
+		
+		
+				</div>
+			</form>
+			<table class="table table-striped">
+				<thead>
+					<tr>
+						<th>index</th>
+						<th>Firstname</th>
+						<th>Lastname</th>
+						<th>Email</th>
+						<th>phone</th>
+						<th>role</th>
+						<th>status</th>
+						<th>Edit</th>
+						<th>Delete</th>
+
+					</tr>
+				</thead>
+				<tbody>
+					<tr ng-repeat="user in users| filter:search">
+						<td>{{$index}}</td>
+						<td>{{user.FNAME}}</td>
+						<td>{{user.LNAME}}</td>
+						<td>{{user.EMAIL}}</td>
+						<td>{{user.PHONE}}</td>
+						<td>{{user.ROLE}}</td>
+						<td>{{user.STATUS}}</td>
+						<td>
+							<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#edit"
+								ng-click="selectUser(user)">Edit</button>
+						</td>
+						<td>
+							<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#delete"
+								ng-click="selectUser(user)">Delete</button>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+
+	</div>
+
+
+	<div class="modal fade" id="add" role="dialog">
+		<div class="modal-dialog modal-md">
+
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close">AddUsers</button>
+					<h4 class="modal-title"></h4>ADD USER</h4>
+				</div>
+				<div class="modal-body">
+					<form class="form-horizontal" role="form">
+
+						<div class="form-group">
+							<label class="control-label col-sm-3" for="name">index</label>
+							<div class="col-sm-7">
+								<input type="text" class="form-control" name="index" id="index"
+									placeholder="enter index" ng-model="newUser.index">
+							</div>
+						</div>
+
+
+						<div class="form-group">
+							<label class="control-label col-sm-3" for="name">First Name</label>
+							<div class="col-sm-7">
+								<input type="text" class="form-control" name="cfname" id="fname_no"
+									placeholder="Enter First Name" ng-model="newUser.FNAME">
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="control-label col-sm-3" for="name">Last Name:</label>
+							<div class="col-sm-7">
+								<input type="text" class="form-control" name="clname" id="lname_no"
+									placeholder="Enter Last Name" ng-model="newUser.LNAME">
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label class="control-label col-sm-3" for="age">Email:</label>
+							<div class="col-sm-7">
+								<input type="email" class="form-control" name="cemail" id="email_no"
+									placeholder="Enter Email" ng-model="newUser.EMAIL">
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="control-label col-sm-3" for="age">phone</label>
+							<div class="col-sm-7">
+								<input type="text" class="form-control" name="phone" id="phone_no"
+									placeholder="phone no" ng-model="newUser.PHONE">
+							</div>
+						</div>
+
+						<div class="form-group">
+
+							<label class="control-label col-sm-3" for="age">Role</label>
+							<div> <select style="margin-left: 163px;width: 321px" name="role" id="role_no"
+									class="form-control" placeholder="select role" ng-model="newUser.ROLE">
+									<option value="" disabled selected hidden>Select role</option>
+									<option value="hr">hr</option>
+									<option value="manager">manager</option>
+									<option value="engineer">engineer</option>
+									<option value="admin">admin</option>
+									<option value="user">user</option>
+
+								</select>
+							</div>
+						</div>
+
+						<div class="form-group">
+
+							<label class="control-label col-sm-3" for="age">Status</label>
+							<div> <select style="margin-left: 163px;width: 321px" name="status" id="status_no"
+									class="form-control" ng-model="newUser.STATUS" placeholder="select status">
+									<option value="" disabled selected hidden>Select status</option>
+									<option value="active">active</option>
+									<option value="inactive">inactive</option>
+								</select>
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="control-label col-sm-3" for="age">password</label>
+							<div class="col-sm-7">
+								<input type="password" class="form-control" name="password" id="password_no"
+									placeholder="password" ng-model="newUser.PASSWORD">
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label class="control-label col-sm-3" for="age">confirm password</label>
+							<div class="col-sm-7">
+								<input type="password" class="form-control" name="cnfmpassword" id="cnfmpassword_no"
+									placeholder="confirm password" ng-model="newUser.CNFMPASSWORD">
+							</div>
+						</div>
+
+						<div class="form-group">
+							<div class="col-sm-offset-2 col-sm-10">
+								<button type="submit" class="btn btn-info" ng-click="saveUser()"
+									data-dismiss="modal">Save</button>
+							</div>
+						</div>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+	<!-- Modal -->
+	<div class="modal fade" id="edit" role="dialog">
+		<div class="modal-dialog modal-md">
+
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 class="modal-title">EDIT USER</h4>
+				</div>
+				<div class="modal-body">
+					<form class="form-horizontal" role="form">
+						<div class="form-group">
+							<label class="control-label col-sm-3" for="name">First Name</label>
+							<div class="col-sm-7">
+								<input type="text" class="form-control" name="cfname" id="fname_id"
+									placeholder="Enter First Name" ng-model="clickedUser.FNAME">
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="control-label col-sm-3" for="name">Last Name:</label>
+							<div class="col-sm-7">
+								<input type="text" class="form-control" name="clname" id="lname_id"
+									placeholder="Enter Last Name" ng-model="clickedUser.LNAME">
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label class="control-label col-sm-3" for="age">Email:</label>
+							<div class="col-sm-7">
+								<input type="email" class="form-control" name="cemail" id="email_id"
+									placeholder="Enter Email" ng-model="clickedUser.EMAIL">
+							</div>
+						</div>
+
+
+
+						<!-- ------ -->
+
+						<div class="form-group">
+							<label class="control-label col-sm-3" for="age">phone</label>
+							<div class="col-sm-7">
+								<input type="text" class="form-control" name="phone" id="phoneno" placeholder="phone no"
+									ng-model="clickedUser.PHONE">
+							</div>
+						</div>
+						<div class="form-group">
+
+							<label class=" control-label col-sm-3 " for="age">Role</label>
+							<div> <select style="margin-left: 163px;width: 321px" name="role" id="role_"
+									ng-model="clickedUser.ROLE" class="form-control" placeholder="select role">
+									<option value="" disabled selected hidden>Select role</option>
+									<option value="hr">hr</option>
+									<option value="manager">manager</option>
+									<option value="engineer">engineer</option>
+									<option value="admin">admin</option>
+									<option value="user">user</option>
+
+								</select>
+							</div>
+						</div>
+						<div class="form-group">
+
+							<label class="control-label col-sm-3" for="age">Status</label>
+							<div> <select style="margin-left: 163px;width: 321px" name="status" id="status_"
+									class="form-control" ng-model="clickedUser.STATUS" placeholder="select status">
+									<option value="" disabled selected hidden>Select status</option>
+									<option value="active">active</option>
+									<option value="inactive">inactive</option>
+								</select>
+							</div>
+						</div>
+
+
+
+
+
+						<!-- ------ -->
+
+						<div class="form-group">
+							<div class="col-sm-offset-2 col-sm-10">
+								<button type="submit" class="btn btn-info" ng-click="updateUser(user)"
+									data-dismiss="modal">Update</button>
+							</div>
+						</div>
+					</form>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+	<!-- Modal -->
+	<div class="modal fade" id="delete" role="dialog">
+		<div class="modal-dialog modal-md">
+
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 class="modal-title">DELETE USER</h4>
+				</div>
+				<div class="modal-body">
+					<span>Do You Want To Delete This User Permanently ?</span><br>
+					<button type="button" class="btn btn-default" data-dismiss="modal"
+						ng-click="deleteUser()">Yes</button>
+					<button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+
+		</div>
+	</div>
+	<div data-pagination="" data-num-pages="numOfPages()" data-current-page="curPage" data-max-size="maxSize"
+		data-boundary-links="true">
+	</div>
+	
+
+</body>
+
+</html>
