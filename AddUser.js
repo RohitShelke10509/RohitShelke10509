@@ -1,11 +1,16 @@
-var myApp = angular.module('myApp', []);
+var myApp = angular.module('myApp', ['ui.bootstrap']);
 
 myApp.controller('myController', function($scope){
 	console.log("In myContoller...");
-	
 	$scope.newUser = {};
 	$scope.checkedUser = {};
 	$scope.message = "";
+
+	
+		
+	 
+	  
+	
 
 	$scope.users = 
 	[
@@ -32,4 +37,24 @@ myApp.controller('myController', function($scope){
 	$scope.deleteUser = function(){
 		$scope.users.splice($scope.users.indexOf($scope.clickedUser), 1);
 	};
+
+
+	$scope.curPage = 2,
+	$scope.itemsPerPage = 2,
+	$scope.maxSize = 2;
+	this.items =$scope.users;
+	  
+	$scope.numOfPages = function () {
+		return Math.ceil($scope.users.length / $scope.itemsPerPage);
+		  
+	  };
+		
+		$scope.$watch('curPage + numPerPage', function() {
+		var begin = (($scope.curPage - 1) * $scope.itemsPerPage),
+		end = begin + $scope.itemsPerPage;
+		  
+		$scope.filteredItems = $scope.users.slice(begin, end);
+	  });
+	
+	
 });
