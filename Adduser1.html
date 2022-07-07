@@ -25,9 +25,25 @@
 
 	</script>
 	<script type="text/javascript" src="AddUser.js"></script>
+
 </head>
 
 <body ng-app="myApp" ng-controller="myController as list">
+	<div class="utility">
+		<div  class="d-inline-block" style="padding:1%;" >
+		  <button  class="sort" id="dropdownBasic1" >SortBy</button>
+		  <div >
+		
+				<button ng-click="sortBy('FNAME')">AtoZ</button>
+				<span class="sortorder" ng-show="propertyName === 'FNAME'"   ng-class="{reverse: reverse}"></span>
+				<button ng-click="sortBy('FNAME')">ZtoA</button>
+				<span class="sortorder" ng-show="propertyName === 'FNAME'" ></span>
+				
+			
+		  </div>
+		</div>
+
+		
 	<div class="container">
 		<div class="row">
 			<hr>
@@ -70,8 +86,8 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr ng-repeat="user in users| filter:search">
-						<td>{{$index}}</td>
+					<tr ng-repeat="user in users | orderBy:propertyName:reverse |filter:search">
+						<td>{{$index+1}}</td>
 						<td>{{user.FNAME}}</td>
 						<td>{{user.LNAME}}</td>
 						<td>{{user.EMAIL}}</td>
@@ -101,6 +117,7 @@
 				<div class="modal-header">
 					<button type="button" class="close">AddUsers</button>
 					<h4 class="modal-title"></h4>ADD USER</h4>
+				
 				</div>
 				<div class="modal-body">
 					<form class="form-horizontal" role="form">
@@ -203,11 +220,11 @@
 		</div>
 	</div>
 
-	<!-- Modal -->
+	
 	<div class="modal fade" id="edit" role="dialog">
 		<div class="modal-dialog modal-md">
 
-			<!-- Modal content-->
+			
 			<div class="modal-content">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -318,12 +335,13 @@
 					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 				</div>
 			</div>
-
+			
 		</div>
+		
 	</div>
 	<div data-pagination="" data-num-pages="numOfPages()" data-current-page="curPage" data-max-size="maxSize"
-		data-boundary-links="true">
-	</div>
+			data-boundary-links="true">
+		</div>
 	
 
 </body>
