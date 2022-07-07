@@ -5,13 +5,8 @@ myApp.controller('myController', function($scope){
 	$scope.newUser = {};
 	$scope.checkedUser = {};
 	$scope.message = "";
-
+    $scope.whichsort=[];
 	
-		
-	 
-	  
-	
-
 	$scope.users = 
 	[
 		{"index":"1","FNAME":"rohit","LNAME":"sharma","EMAIL":"rohit@gmail.com","PHONE":1234,"ROLE":"user","STATUS":"active","PASSWORD":"","CNFMPASSWORD":""},
@@ -38,6 +33,19 @@ myApp.controller('myController', function($scope){
 		$scope.users.splice($scope.users.indexOf($scope.clickedUser), 1);
 	};
 
+
+
+	$scope.propertyName = 'FNAME';
+  $scope.reverse = true;
+ 
+
+  $scope.sortBy = function(propertyName) {
+	
+    $scope.reverse = ($scope.propertyName === propertyName) ? !$scope.reverse : false;
+    $scope.propertyName = propertyName;
+  };
+	
+	 
 
 	$scope.curPage = 2,
 	$scope.itemsPerPage = 2,
